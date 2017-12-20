@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="foo.BillingDetails" table="BILLING_DETAILS" discriminator-value="BD">
+		<id name="id" column="BILLING_DETAILS_ID">
+			<generator class="native"/>
+		</id>
+		<discriminator column="BILLING_DETAILS_TYPE" type="string"></discriminator>
+		<version name="version" type="long"/>
+		
+		<property name="owner" column="OWNER"/>
+		<property name="number" column="NUMBER"/>
+		<many-to-one name="user" class="foo.User" column="USER_ID" />
+		
+		<subclass name="foo.CreditCard"  discriminator-value="CC">
+			<property name="type" column="CREDIT_CARD_TYPE"/>
+			<property name="expMonth" column="EXP_MONTH"/>
+			<property name="expYear" column="EXP_YEAR"/>
+		</subclass>
+	    
+	    <subclass name="foo.BankAccount" discriminator-value="BA">
+	    	<property name="bankName" column="BANK_NAME"/>
+	    	<property name="bankSwift" column="BANK_SWIFT"/>
+	    </subclass>
+	    
+	</class>
+</hibernate-mapping>

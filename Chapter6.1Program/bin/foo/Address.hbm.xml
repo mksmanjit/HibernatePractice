@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="foo.Address" table="ADDRESS">
+		<id name="id" column="ADDRESS_ID">
+			<generator class="foreign">
+				<param name="property">user</param>
+			</generator>
+		</id>
+		<version name="version" type="long"/>
+		<property name="street" column="STREET"/>
+		<property name="city" column="CITY"/>
+		<property name="zipcode" column="ZIPCODE"/>
+		
+		<one-to-one name="user" class="foo.User" constrained="true" />
+	</class>
+</hibernate-mapping>

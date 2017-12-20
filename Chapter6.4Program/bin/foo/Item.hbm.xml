@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="foo.Item" table="ITEM">
+		<id name="id" column="ITEM_ID">
+			<generator class="native"/>
+		</id>
+		<version name="version" type="long"/>
+		<property name="name" column="NAME"/>
+		<property name="description" column="DESCRIPTION"/>
+		
+		<set name="bids" outer-join="true"
+			cascade="save-update" >
+			<key column="ITEM_ID_1"/>
+			<one-to-many class="foo.Bid" />	
+		</set>
+	</class>
+</hibernate-mapping>

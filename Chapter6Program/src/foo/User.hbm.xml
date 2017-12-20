@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="foo.User" table="USER">
+		<id name="id" column="USER_ID">
+			<generator class="native"/>
+		</id>
+		<version name="version" type="long"/>
+		<property name="firstName" column="FIRSTNAME"/>
+		<property name="lastName" column="LASTNAME"/>
+		<property name="userName" column="USERNAME"/>
+		<property name="password" column="PASSWORD"/>
+		<property name="email"  column="EMAIL"/>
+		<property name="created" column="CREATED"/>
+		
+		<many-to-one name="billingAddress" class="foo.Address"
+				column="BILLING_ADDRESS_ID" cascade="all" unique="true"/>
+	</class>
+</hibernate-mapping>

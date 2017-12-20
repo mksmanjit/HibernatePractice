@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="foo.Bid" table="BID">
+		<id name="id" column="BID_ID">
+			<generator class="native"/>
+		</id>
+		<version name="version" type="long"/>
+		<property name="amount" column="AMOUNT"/>
+		<many-to-one name="item" class="foo.Item" column="ITEM_ID_2"/>	
+	</class>
+</hibernate-mapping>
